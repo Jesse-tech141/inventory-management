@@ -1,0 +1,37 @@
+[
+  {
+    "expenseCategoryId": 1001,
+    "categoryName": "Website & Platform costs",
+    "description": "Costs related to website hosting and maintenance"
+  },
+  {
+    "expenseCategoryId": 1002,
+    "categoryName": "Product costs",
+    "description": "Expenses for purchasing products"
+  },
+  {
+    "expenseCategoryId": 1003,
+    "categoryName": "Marketing & Advertising",
+    "description": "Costs for ads and promotional campaigns"
+  },
+  {
+    "expenseCategoryId": 1004,
+    "categoryName": "Customer Support",
+    "description": "Expenses for customer service tools and staff"
+  },
+  {
+    "expenseCategoryId": 1005,
+    "categoryName": "Payment Processing Fees",
+    "description": "Fees charged by payment gateways"
+  },
+  {
+    "expenseCategoryId": 1006,
+    "categoryName": "Social Media Management",
+    "description": "Costs for managing social media accounts"
+  },
+  {
+    "expenseCategoryId": 1007,
+    "categoryName": "Miscellaneous",
+    "description": "Other uncategorized expenses"
+  }
+]

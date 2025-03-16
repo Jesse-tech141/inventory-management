@@ -1,0 +1,72 @@
+[
+  {
+    "orderId": 1,
+    "orderDate": "2023-10-01T10:00:00Z",
+    "totalAmount": 910.0,
+    "status": "Received",
+    "createdAt": "2023-10-01T10:00:00Z"
+  },
+  {
+    "orderId": 2,
+    "orderDate": "2023-10-02T11:00:00Z",
+    "totalAmount": 750.0,
+    "status": "Pending",
+    "createdAt": "2023-10-02T11:00:00Z"
+  },
+  {
+    "orderId": 3,
+    "orderDate": "2023-10-03T12:00:00Z",
+    "totalAmount": 685.0,
+    "status": "Received",
+    "createdAt": "2023-10-03T12:00:00Z"
+  },
+  {
+    "orderId": 4,
+    "orderDate": "2023-10-04T13:00:00Z",
+    "totalAmount": 660.0,
+    "status": "Cancelled",
+    "createdAt": "2023-10-04T13:00:00Z"
+  },
+  {
+    "orderId": 5,
+    "orderDate": "2023-10-05T14:00:00Z",
+    "totalAmount": 680.0,
+    "status": "Received",
+    "createdAt": "2023-10-05T14:00:00Z"
+  },
+  {
+    "orderId": 6,
+    "orderDate": "2023-10-06T15:00:00Z",
+    "totalAmount": 690.0,
+    "status": "Pending",
+    "createdAt": "2023-10-06T15:00:00Z"
+  },
+  {
+    "orderId": 7,
+    "orderDate": "2023-10-07T16:00:00Z",
+    "totalAmount": 720.0,
+    "status": "Received",
+    "createdAt": "2023-10-07T16:00:00Z"
+  },
+  {
+    "orderId": 8,
+    "orderDate": "2023-10-08T17:00:00Z",
+    "totalAmount": 820.0,
+    "status": "Cancelled",
+    "createdAt": "2023-10-08T17:00:00Z"
+  },
+  {
+    "orderId": 9,
+    "orderDate": "2023-10-09T18:00:00Z",
+    "totalAmount": 670.0,
+    "status": "Received",
+    "createdAt": "2023-10-09T18:00:00Z"
+  },
+  {
+    "orderId": 10,
+    "orderDate": "2023-10-10T19:00:00Z",
+    "totalAmount": 620.0,
+    "status": "Pending",
+    "createdAt": "2023-10-10T19:00:00Z"
+  }
+]

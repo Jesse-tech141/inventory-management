@@ -1,0 +1,302 @@
+[
+  {
+    "saleId": 1101,
+    "saleDate": "2024-01-05T10:30:00Z",
+    "totalAmount": 259.98,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1102,
+    "saleDate": "2024-01-10T14:45:00Z",
+    "totalAmount": 359.97,
+    "status": "Pending"
+  },
+  {
+    "saleId": 1103,
+    "saleDate": "2024-01-15T09:15:00Z",
+    "totalAmount": 99.99,
+    "status": "Cancelled"
+  },
+  {
+    "saleId": 1104,
+    "saleDate": "2024-01-20T16:20:00Z",
+    "totalAmount": 800.0,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1105,
+    "saleDate": "2024-01-25T11:10:00Z",
+    "totalAmount": 300.0,
+    "status": "Pending"
+  },
+  {
+    "saleId": 1106,
+    "saleDate": "2024-02-01T13:25:00Z",
+    "totalAmount": 390.0,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1107,
+    "saleDate": "2024-02-05T08:50:00Z",
+    "totalAmount": 180.0,
+    "status": "Cancelled"
+  },
+  {
+    "saleId": 1108,
+    "saleDate": "2024-02-10T17:35:00Z",
+    "totalAmount": 340.0,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1109,
+    "saleDate": "2024-02-15T12:40:00Z",
+    "totalAmount": 560.0,
+    "status": "Pending"
+  },
+  {
+    "saleId": 1110,
+    "saleDate": "2024-02-20T15:55:00Z",
+    "totalAmount": 220.0,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1111,
+    "saleDate": "2024-02-25T09:00:00Z",
+    "totalAmount": 119.99,
+    "status": "Pending"
+  },
+  {
+    "saleId": 1112,
+    "saleDate": "2024-03-01T12:00:00Z",
+    "totalAmount": 400.0,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1113,
+    "saleDate": "2024-03-05T14:00:00Z",
+    "totalAmount": 99.99,
+    "status": "Cancelled"
+  },
+  {
+    "saleId": 1114,
+    "saleDate": "2024-03-10T10:00:00Z",
+    "totalAmount": 720.0,
+    "status": "Pending"
+  },
+  {
+    "saleId": 1115,
+    "saleDate": "2024-03-15T16:00:00Z",
+    "totalAmount": 260.0,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1116,
+    "saleDate": "2024-03-20T11:00:00Z",
+    "totalAmount": 540.0,
+    "status": "Pending"
+  },
+  {
+    "saleId": 1117,
+    "saleDate": "2024-03-25T13:00:00Z",
+    "totalAmount": 130.0,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1118,
+    "saleDate": "2024-03-30T08:00:00Z",
+    "totalAmount": 175.0,
+    "status": "Cancelled"
+  },
+  {
+    "saleId": 1119,
+    "saleDate": "2024-04-05T17:00:00Z",
+    "totalAmount": 420.0,
+    "status": "Pending"
+  },
+  {
+    "saleId": 1120,
+    "saleDate": "2024-04-10T09:30:00Z",
+    "totalAmount": 340.0,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1121,
+    "saleDate": "2024-04-15T14:30:00Z",
+    "totalAmount": 99.99,
+    "status": "Pending"
+  },
+  {
+    "saleId": 1122,
+    "saleDate": "2024-04-20T10:45:00Z",
+    "totalAmount": 600.0,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1123,
+    "saleDate": "2024-04-25T12:15:00Z",
+    "totalAmount": 150.0,
+    "status": "Cancelled"
+  },
+  {
+    "saleId": 1124,
+    "saleDate": "2024-05-01T15:20:00Z",
+    "totalAmount": 480.0,
+    "status": "Pending"
+  },
+  {
+    "saleId": 1125,
+    "saleDate": "2024-05-05T11:10:00Z",
+    "totalAmount": 260.0,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1126,
+    "saleDate": "2024-05-10T13:25:00Z",
+    "totalAmount": 360.0,
+    "status": "Pending"
+  },
+  {
+    "saleId": 1127,
+    "saleDate": "2024-05-15T08:50:00Z",
+    "totalAmount": 190.0,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1128,
+    "saleDate": "2024-05-20T17:35:00Z",
+    "totalAmount": 510.0,
+    "status": "Pending"
+  },
+  {
+    "saleId": 1129,
+    "saleDate": "2024-05-25T12:40:00Z",
+    "totalAmount": 130.0,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1130,
+    "saleDate": "2024-05-30T15:55:00Z",
+    "totalAmount": 99.99,
+    "status": "Cancelled"
+  },
+  {
+    "saleId": 1131,
+    "saleDate": "2024-06-05T09:00:00Z",
+    "totalAmount": 400.0,
+    "status": "Pending"
+  },
+  {
+    "saleId": 1132,
+    "saleDate": "2024-06-10T12:00:00Z",
+    "totalAmount": 520.0,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1133,
+    "saleDate": "2024-06-15T14:00:00Z",
+    "totalAmount": 99.99,
+    "status": "Pending"
+  },
+  {
+    "saleId": 1134,
+    "saleDate": "2024-06-20T10:00:00Z",
+    "totalAmount": 340.0,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1135,
+    "saleDate": "2024-06-25T16:00:00Z",
+    "totalAmount": 180.0,
+    "status": "Cancelled"
+  },
+  {
+    "saleId": 1136,
+    "saleDate": "2024-07-01T11:00:00Z",
+    "totalAmount": 260.0,
+    "status": "Pending"
+  },
+  {
+    "saleId": 1137,
+    "saleDate": "2024-07-05T13:00:00Z",
+    "totalAmount": 390.0,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1138,
+    "saleDate": "2024-07-10T08:00:00Z",
+    "totalAmount": 99.99,
+    "status": "Pending"
+  },
+  {
+    "saleId": 1139,
+    "saleDate": "2024-07-15T17:00:00Z",
+    "totalAmount": 560.0,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1140,
+    "saleDate": "2024-07-20T09:30:00Z",
+    "totalAmount": 220.0,
+    "status": "Pending"
+  },
+  {
+    "saleId": 1141,
+    "saleDate": "2024-07-25T14:30:00Z",
+    "totalAmount": 119.99,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1142,
+    "saleDate": "2024-07-30T10:45:00Z",
+    "totalAmount": 400.0,
+    "status": "Pending"
+  },
+  {
+    "saleId": 1143,
+    "saleDate": "2024-08-05T12:15:00Z",
+    "totalAmount": 99.99,
+    "status": "Cancelled"
+  },
+  {
+    "saleId": 1144,
+    "saleDate": "2024-08-10T15:20:00Z",
+    "totalAmount": 720.0,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1145,
+    "saleDate": "2024-08-15T11:10:00Z",
+    "totalAmount": 260.0,
+    "status": "Pending"
+  },
+  {
+    "saleId": 1146,
+    "saleDate": "2024-08-20T13:25:00Z",
+    "totalAmount": 540.0,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1147,
+    "saleDate": "2024-08-25T08:50:00Z",
+    "totalAmount": 130.0,
+    "status": "Pending"
+  },
+  {
+    "saleId": 1148,
+    "saleDate": "2024-08-30T17:35:00Z",
+    "totalAmount": 175.0,
+    "status": "Completed"
+  },
+  {
+    "saleId": 1149,
+    "saleDate": "2024-09-05T12:40:00Z",
+    "totalAmount": 420.0,
+    "status": "Pending"
+  },
+  {
+    "saleId": 1150,
+    "saleDate": "2024-09-10T15:55:00Z",
+    "totalAmount": 340.0,
+    "status": "Completed"
+  }
+]

@@ -1,0 +1,322 @@
+[
+  {
+    "orderItemId": 1,
+    "orderId": 1,
+    "productId": 1,
+    "quantityOrdered": 2,
+    "pricePerUnit": 150.0,
+    "subtotal": 300.0
+  },
+  {
+    "orderItemId": 2,
+    "orderId": 1,
+    "productId": 2,
+    "quantityOrdered": 1,
+    "pricePerUnit": 180.0,
+    "subtotal": 180.0
+  },
+  {
+    "orderItemId": 3,
+    "orderId": 1,
+    "productId": 3,
+    "quantityOrdered": 3,
+    "pricePerUnit": 100.0,
+    "subtotal": 300.0
+  },
+  {
+    "orderItemId": 4,
+    "orderId": 1,
+    "productId": 4,
+    "quantityOrdered": 1,
+    "pricePerUnit": 130.0,
+    "subtotal": 130.0
+  },
+  {
+    "orderItemId": 5,
+    "orderId": 2,
+    "productId": 5,
+    "quantityOrdered": 2,
+    "pricePerUnit": 160.0,
+    "subtotal": 320.0
+  },
+  {
+    "orderItemId": 6,
+    "orderId": 2,
+    "productId": 6,
+    "quantityOrdered": 1,
+    "pricePerUnit": 90.0,
+    "subtotal": 90.0
+  },
+  {
+    "orderItemId": 7,
+    "orderId": 2,
+    "productId": 7,
+    "quantityOrdered": 1,
+    "pricePerUnit": 170.0,
+    "subtotal": 170.0
+  },
+  {
+    "orderItemId": 8,
+    "orderId": 2,
+    "productId": 8,
+    "quantityOrdered": 2,
+    "pricePerUnit": 85.0,
+    "subtotal": 170.0
+  },
+  {
+    "orderItemId": 9,
+    "orderId": 3,
+    "productId": 9,
+    "quantityOrdered": 1,
+    "pricePerUnit": 110.0,
+    "subtotal": 110.0
+  },
+  {
+    "orderItemId": 10,
+    "orderId": 3,
+    "productId": 10,
+    "quantityOrdered": 1,
+    "pricePerUnit": 220.0,
+    "subtotal": 220.0
+  },
+  {
+    "orderItemId": 11,
+    "orderId": 3,
+    "productId": 11,
+    "quantityOrdered": 2,
+    "pricePerUnit": 130.0,
+    "subtotal": 260.0
+  },
+  {
+    "orderItemId": 12,
+    "orderId": 3,
+    "productId": 12,
+    "quantityOrdered": 1,
+    "pricePerUnit": 95.0,
+    "subtotal": 95.0
+  },
+  {
+    "orderItemId": 13,
+    "orderId": 4,
+    "productId": 13,
+    "quantityOrdered": 1,
+    "pricePerUnit": 110.0,
+    "subtotal": 110.0
+  },
+  {
+    "orderItemId": 14,
+    "orderId": 4,
+    "productId": 14,
+    "quantityOrdered": 2,
+    "pricePerUnit": 120.0,
+    "subtotal": 240.0
+  },
+  {
+    "orderItemId": 15,
+    "orderId": 4,
+    "productId": 15,
+    "quantityOrdered": 1,
+    "pricePerUnit": 170.0,
+    "subtotal": 170.0
+  },
+  {
+    "orderItemId": 16,
+    "orderId": 4,
+    "productId": 16,
+    "quantityOrdered": 1,
+    "pricePerUnit": 140.0,
+    "subtotal": 140.0
+  },
+  {
+    "orderItemId": 17,
+    "orderId": 5,
+    "productId": 17,
+    "quantityOrdered": 1,
+    "pricePerUnit": 190.0,
+    "subtotal": 190.0
+  },
+  {
+    "orderItemId": 18,
+    "orderId": 5,
+    "productId": 18,
+    "quantityOrdered": 2,
+    "pricePerUnit": 80.0,
+    "subtotal": 160.0
+  },
+  {
+    "orderItemId": 19,
+    "orderId": 5,
+    "productId": 19,
+    "quantityOrdered": 1,
+    "pricePerUnit": 200.0,
+    "subtotal": 200.0
+  },
+  {
+    "orderItemId": 20,
+    "orderId": 5,
+    "productId": 20,
+    "quantityOrdered": 1,
+    "pricePerUnit": 130.0,
+    "subtotal": 130.0
+  },
+  {
+    "orderItemId": 21,
+    "orderId": 6,
+    "productId": 21,
+    "quantityOrdered": 1,
+    "pricePerUnit": 150.0,
+    "subtotal": 150.0
+  },
+  {
+    "orderItemId": 22,
+    "orderId": 6,
+    "productId": 22,
+    "quantityOrdered": 2,
+    "pricePerUnit": 120.0,
+    "subtotal": 240.0
+  },
+  {
+    "orderItemId": 23,
+    "orderId": 6,
+    "productId": 23,
+    "quantityOrdered": 1,
+    "pricePerUnit": 120.0,
+    "subtotal": 120.0
+  },
+  {
+    "orderItemId": 24,
+    "orderId": 6,
+    "productId": 24,
+    "quantityOrdered": 1,
+    "pricePerUnit": 180.0,
+    "subtotal": 180.0
+  },
+  {
+    "orderItemId": 25,
+    "orderId": 7,
+    "productId": 25,
+    "quantityOrdered": 2,
+    "pricePerUnit": 160.0,
+    "subtotal": 320.0
+  },
+  {
+    "orderItemId": 26,
+    "orderId": 7,
+    "productId": 26,
+    "quantityOrdered": 1,
+    "pricePerUnit": 100.0,
+    "subtotal": 100.0
+  },
+  {
+    "orderItemId": 27,
+    "orderId": 7,
+    "productId": 27,
+    "quantityOrdered": 1,
+    "pricePerUnit": 170.0,
+    "subtotal": 170.0
+  },
+  {
+    "orderItemId": 28,
+    "orderId": 7,
+    "productId": 28,
+    "quantityOrdered": 1,
+    "pricePerUnit": 130.0,
+    "subtotal": 130.0
+  },
+  {
+    "orderItemId": 29,
+    "orderId": 8,
+    "productId": 29,
+    "quantityOrdered": 1,
+    "pricePerUnit": 180.0,
+    "subtotal": 180.0
+  },
+  {
+    "orderItemId": 30,
+    "orderId": 8,
+    "productId": 30,
+    "quantityOrdered": 1,
+    "pricePerUnit": 300.0,
+    "subtotal": 300.0
+  },
+  {
+    "orderItemId": 31,
+    "orderId": 8,
+    "productId": 31,
+    "quantityOrdered": 1,
+    "pricePerUnit": 160.0,
+    "subtotal": 160.0
+  },
+  {
+    "orderItemId": 32,
+    "orderId": 8,
+    "productId": 32,
+    "quantityOrdered": 1,
+    "pricePerUnit": 180.0,
+    "subtotal": 180.0
+  },
+  {
+    "orderItemId": 33,
+    "orderId": 9,
+    "productId": 33,
+    "quantityOrdered": 1,
+    "pricePerUnit": 200.0,
+    "subtotal": 200.0
+  },
+  {
+    "orderItemId": 34,
+    "orderId": 9,
+    "productId": 34,
+    "quantityOrdered": 2,
+    "pricePerUnit": 90.0,
+    "subtotal": 180.0
+  },
+  {
+    "orderItemId": 35,
+    "orderId": 9,
+    "productId": 35,
+    "quantityOrdered": 1,
+    "pricePerUnit": 190.0,
+    "subtotal": 190.0
+  },
+  {
+    "orderItemId": 36,
+    "orderId": 9,
+    "productId": 36,
+    "quantityOrdered": 1,
+    "pricePerUnit": 100.0,
+    "subtotal": 100.0
+  },
+  {
+    "orderItemId": 37,
+    "orderId": 10,
+    "productId": 37,
+    "quantityOrdered": 1,
+    "pricePerUnit": 150.0,
+    "subtotal": 150.0
+  },
+  {
+    "orderItemId": 38,
+    "orderId": 10,
+    "productId": 38,
+    "quantityOrdered": 1,
+    "pricePerUnit": 140.0,
+    "subtotal": 140.0
+  },
+  {
+    "orderItemId": 39,
+    "orderId": 10,
+    "productId": 39,
+    "quantityOrdered": 1,
+    "pricePerUnit": 150.0,
+    "subtotal": 150.0
+  },
+  {
+    "orderItemId": 40,
+    "orderId": 10,
+    "productId": 40,
+    "quantityOrdered": 1,
+    "pricePerUnit": 180.0,
+    "subtotal": 180.0
+  }
+]

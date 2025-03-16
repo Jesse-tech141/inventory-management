@@ -1,0 +1,352 @@
+[
+  {
+    "saleItemId": 1001,
+    "saleId": 1101,
+    "productId": 5,
+    "quantitySold": 2,
+    "pricePerUnit": 130.0
+  },
+  {
+    "saleItemId": 1002,
+    "saleId": 1101,
+    "productId": 12,
+    "quantitySold": 1,
+    "pricePerUnit": 130.0
+  },
+  {
+    "saleItemId": 1003,
+    "saleId": 1102,
+    "productId": 3,
+    "quantitySold": 3,
+    "pricePerUnit": 119.99
+  },
+  {
+    "saleItemId": 1004,
+    "saleId": 1102,
+    "productId": 20,
+    "quantitySold": 2,
+    "pricePerUnit": 200.0
+  },
+  {
+    "saleItemId": 1005,
+    "saleId": 1103,
+    "productId": 7,
+    "quantitySold": 1,
+    "pricePerUnit": 99.99
+  },
+  {
+    "saleItemId": 1006,
+    "saleId": 1104,
+    "productId": 15,
+    "quantitySold": 4,
+    "pricePerUnit": 200.0
+  },
+  {
+    "saleItemId": 1007,
+    "saleId": 1105,
+    "productId": 8,
+    "quantitySold": 2,
+    "pricePerUnit": 150.0
+  },
+  {
+    "saleItemId": 1008,
+    "saleId": 1106,
+    "productId": 10,
+    "quantitySold": 3,
+    "pricePerUnit": 130.0
+  },
+  {
+    "saleItemId": 1009,
+    "saleId": 1107,
+    "productId": 25,
+    "quantitySold": 1,
+    "pricePerUnit": 180.0
+  },
+  {
+    "saleItemId": 1010,
+    "saleId": 1108,
+    "productId": 30,
+    "quantitySold": 2,
+    "pricePerUnit": 170.0
+  },
+  {
+    "saleItemId": 1011,
+    "saleId": 1109,
+    "productId": 2,
+    "quantitySold": 1,
+    "pricePerUnit": 99.99
+  },
+  {
+    "saleItemId": 1012,
+    "saleId": 1110,
+    "productId": 18,
+    "quantitySold": 3,
+    "pricePerUnit": 140.0
+  },
+  {
+    "saleItemId": 1013,
+    "saleId": 1111,
+    "productId": 6,
+    "quantitySold": 2,
+    "pricePerUnit": 190.0
+  },
+  {
+    "saleItemId": 1014,
+    "saleId": 1112,
+    "productId": 9,
+    "quantitySold": 1,
+    "pricePerUnit": 99.99
+  },
+  {
+    "saleItemId": 1015,
+    "saleId": 1113,
+    "productId": 14,
+    "quantitySold": 4,
+    "pricePerUnit": 180.0
+  },
+  {
+    "saleItemId": 1016,
+    "saleId": 1114,
+    "productId": 22,
+    "quantitySold": 2,
+    "pricePerUnit": 160.0
+  },
+  {
+    "saleItemId": 1017,
+    "saleId": 1115,
+    "productId": 27,
+    "quantitySold": 3,
+    "pricePerUnit": 170.0
+  },
+  {
+    "saleItemId": 1018,
+    "saleId": 1116,
+    "productId": 33,
+    "quantitySold": 1,
+    "pricePerUnit": 140.0
+  },
+  {
+    "saleItemId": 1019,
+    "saleId": 1117,
+    "productId": 40,
+    "quantitySold": 2,
+    "pricePerUnit": 150.0
+  },
+  {
+    "saleItemId": 1020,
+    "saleId": 1118,
+    "productId": 11,
+    "quantitySold": 1,
+    "pricePerUnit": 175.0
+  },
+  {
+    "saleItemId": 1021,
+    "saleId": 1119,
+    "productId": 19,
+    "quantitySold": 3,
+    "pricePerUnit": 140.0
+  },
+  {
+    "saleItemId": 1022,
+    "saleId": 1120,
+    "productId": 26,
+    "quantitySold": 2,
+    "pricePerUnit": 180.0
+  },
+  {
+    "saleItemId": 1023,
+    "saleId": 1121,
+    "productId": 4,
+    "quantitySold": 1,
+    "pricePerUnit": 120.0
+  },
+  {
+    "saleItemId": 1024,
+    "saleId": 1122,
+    "productId": 13,
+    "quantitySold": 4,
+    "pricePerUnit": 150.0
+  },
+  {
+    "saleItemId": 1025,
+    "saleId": 1123,
+    "productId": 17,
+    "quantitySold": 2,
+    "pricePerUnit": 120.0
+  },
+  {
+    "saleItemId": 1026,
+    "saleId": 1124,
+    "productId": 21,
+    "quantitySold": 3,
+    "pricePerUnit": 160.0
+  },
+  {
+    "saleItemId": 1027,
+    "saleId": 1125,
+    "productId": 29,
+    "quantitySold": 1,
+    "pricePerUnit": 190.0
+  },
+  {
+    "saleItemId": 1028,
+    "saleId": 1126,
+    "productId": 34,
+    "quantitySold": 2,
+    "pricePerUnit": 160.0
+  },
+  {
+    "saleItemId": 1029,
+    "saleId": 1127,
+    "productId": 37,
+    "quantitySold": 3,
+    "pricePerUnit": 130.0
+  },
+  {
+    "saleItemId": 1030,
+    "saleId": 1128,
+    "productId": 39,
+    "quantitySold": 1,
+    "pricePerUnit": 150.0
+  },
+  {
+    "saleItemId": 1031,
+    "saleId": 1129,
+    "productId": 1,
+    "quantitySold": 2,
+    "pricePerUnit": 129.99
+  },
+  {
+    "saleItemId": 1032,
+    "saleId": 1130,
+    "productId": 16,
+    "quantitySold": 3,
+    "pricePerUnit": 130.0
+  },
+  {
+    "saleItemId": 1033,
+    "saleId": 1131,
+    "productId": 23,
+    "quantitySold": 1,
+    "pricePerUnit": 130.0
+  },
+  {
+    "saleItemId": 1034,
+    "saleId": 1132,
+    "productId": 28,
+    "quantitySold": 2,
+    "pricePerUnit": 170.0
+  },
+  {
+    "saleItemId": 1035,
+    "saleId": 1133,
+    "productId": 31,
+    "quantitySold": 3,
+    "pricePerUnit": 150.0
+  },
+  {
+    "saleItemId": 1036,
+    "saleId": 1134,
+    "productId": 35,
+    "quantitySold": 1,
+    "pricePerUnit": 160.0
+  },
+  {
+    "saleItemId": 1037,
+    "saleId": 1135,
+    "productId": 38,
+    "quantitySold": 2,
+    "pricePerUnit": 130.0
+  },
+  {
+    "saleItemId": 1038,
+    "saleId": 1136,
+    "productId": 36,
+    "quantitySold": 3,
+    "pricePerUnit": 190.0
+  },
+  {
+    "saleItemId": 1039,
+    "saleId": 1137,
+    "productId": 24,
+    "quantitySold": 1,
+    "pricePerUnit": 140.0
+  },
+  {
+    "saleItemId": 1040,
+    "saleId": 1138,
+    "productId": 32,
+    "quantitySold": 2,
+    "pricePerUnit": 150.0
+  },
+  {
+    "saleItemId": 1041,
+    "saleId": 1139,
+    "productId": 5,
+    "quantitySold": 2,
+    "pricePerUnit": 130.0
+  },
+  {
+    "saleItemId": 1042,
+    "saleId": 1140,
+    "productId": 12,
+    "quantitySold": 1,
+    "pricePerUnit": 130.0
+  },
+  {
+    "saleItemId": 1043,
+    "saleId": 1141,
+    "productId": 3,
+    "quantitySold": 3,
+    "pricePerUnit": 119.99
+  },
+  {
+    "saleItemId": 1044,
+    "saleId": 1142,
+    "productId": 20,
+    "quantitySold": 2,
+    "pricePerUnit": 200.0
+  },
+  {
+    "saleItemId": 1045,
+    "saleId": 1143,
+    "productId": 7,
+    "quantitySold": 1,
+    "pricePerUnit": 99.99
+  },
+  {
+    "saleItemId": 1046,
+    "saleId": 1144,
+    "productId": 15,
+    "quantitySold": 4,
+    "pricePerUnit": 200.0
+  },
+  {
+    "saleItemId": 1047,
+    "saleId": 1145,
+    "productId": 8,
+    "quantitySold": 2,
+    "pricePerUnit": 150.0
+  },
+  {
+    "saleItemId": 1048,
+    "saleId": 1146,
+    "productId": 10,
+    "quantitySold": 3,
+    "pricePerUnit": 130.0
+  },
+  {
+    "saleItemId": 1049,
+    "saleId": 1147,
+    "productId": 25,
+    "quantitySold": 1,
+    "pricePerUnit": 180.0
+  },
+  {
+    "saleItemId": 1050,
+    "saleId": 1148,
+    "productId": 30,
+    "quantitySold": 2,
+    "pricePerUnit": 170.0
+  }
+]

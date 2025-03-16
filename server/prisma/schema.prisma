@@ -1,0 +1,195 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  userId         Int      @id @default(autoincrement())                           // Primary key
+  username       String   @unique                       // Unique username
+  firstname      String                                 // First name
+  lastname       String                                 // Last name
+  email          String   @unique                       // Unique email
+  password       String                                 // Password (hash this before storing)
+  phoneNumber    String?  @unique                       // Optional phone number
+  bio            String?                                // Optional bio
+  jobDescription String?                                // Optional job description
+  address        String?                                // Optional address
+  sex            String?                                // Optional sex/gender
+  img            String?                                // Optional profile image URL
+  createdAt      DateTime @default(now())               // Timestamp when user is created
+  updatedAt      DateTime @updatedAt                    // Timestamp when user is updated
+
+  // You can add relationships to other models here if needed
+  // Example: posts Post[]
+  expenses  Expenses[]
+  notifications  Notifications[]                              // One-to-many relationship with Notification
+}
+
+model Products {
+  productId       Int      @id @default(autoincrement())                           // Primary key
+  name            String    
+  brand           String    
+  size            String    
+  color           String    
+  price           Float     
+  stockQuantity   Int
+  description     String?    
+  img             String?   
+  status          String
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  ratings         Float?      
+  saleItems   SaleItems[]
+  orderItems  OrderItems[]
+}
+
+model Sales {
+  saleId      Int      @id
+  saleDate    DateTime
+  totalAmount Float
+  status      String
+  saleItems   SaleItems[]
+}
+
+model SaleItems {
+  saleItemId  Int      @id
+  saleId      Int
+  productId   Int
+  quantitySold Int
+  pricePerUnit Float
+  sale        Sales    @relation(fields: [saleId], references: [saleId])
+  product     Products @relation(fields: [productId], references: [productId])
+}
+
+model Orders {
+  orderId     Int         @id // Primary Key
+  orderDate   DateTime    @default(now())
+  totalAmount Float     
+  status      String
+  createdAt   DateTime    @default(now())
+  orderItems  OrderItems[] // Relationship to OrderItem
+}
+
+model OrderItems {
+  orderItemId  Int      @id
+  orderId     Int
+  productId   Int
+  quantityOrdered Int
+  pricePerUnit Float
+  subtotal       Float
+  order       Orders   @relation(fields: [orderId], references: [orderId])
+  product     Products @relation(fields: [productId], references: [productId])
+}
+
+model Expenses {
+  expenseId   Int      @id
+  category    String
+  amount      Float
+  timestamp   DateTime
+  description String
+  userId      Int
+  user      Users    @relation(fields: [userId], references: [userId])
+}
+
+model ExpenseCategories {
+  expenseCategoryId Int      @id
+  categoryName      String
+  description       String
+}
+
+model Notifications {
+  notificationId Int      @id @default(autoincrement()) // Primary key
+  userId         Int                                    // Foreign key to User
+  message       String                                 // Notification message
+  createdAt     DateTime @default(now())              // Timestamp when the notification was created
+  readStatus    Boolean  @default(false)              // Whether the notification has been read
+  // Relationship to User
+  user          Users     @relation(fields: [userId], references: [userId])
+}
+
+
+
+
+/*
+Table Users {
+  userId TEXT [pk]
+  firstname TEXT
+  lastname TEXT
+  email TEXT
+  password TEXT
+  bio TEXT
+}
+
+Table Products {
+  productId TEXT [pk]
+  name TEXT
+  pricePerUnit decimal
+  rating decimal
+  stock INTEGER
+}
+
+Table Sales {
+  saleId TEXT [pk]
+  saleDate TIMESTAMP
+  totalAmount decimal
+  status TEXT
+  userId TEXT [ref: > Users.userId]
+}
+
+Table SaleItem {
+  saleItemId TEXT [pk]
+  saleId TEXT [ref: > Sales.saleId]
+  productId TEXT [ref: > Products.productId]
+  quantitySold INTEGER
+  pricePerUnit decimal
+}
+
+Table Orders {
+  orderId TEXT [pk]
+  orderDate TIMESTAMP
+  expectedDeliveryDate TIMESTAMP
+  status TEXT
+  userId TEXT [ref: > Users.userId]
+}
+
+Table OrderItem {
+  orderItemId TEXT [pk]
+  orderId TEXT [ref: > Orders.orderId]
+  productId TEXT [ref: > Products.productId]
+  quantityOrdered INTEGER
+  pricePerUnit decimal
+}
+
+Table Expenses {
+  expenseId TEXT [pk]
+  category TEXT
+  amount decimal
+  timestamp TIMESTAMP
+  description TEXT
+  userId TEXT [ref: > Users.userId]
+}
+
+Table ExpenseCategories {
+  expenseCategoryId TEXT [pk]
+  categoryName TEXT
+  description TEXT
+}
+
+Table Notifications {
+  notificationId TEXT [pk]
+  message TEXT
+  timestamp TIMESTAMP
+  status TEXT
+  userId TEXT [ref: > Users.userId]
+}
+*/
