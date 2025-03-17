@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useGetOrdersQuery, useGetOrderItemsQuery } from "@/state/api";
 import Header from "@/app/(components)/Header";
-import { DataGrid, GridColDef, GridRowParams, GridCellParams } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridRowParams } from "@mui/x-data-grid";
 import OrderItemsModal from "./OrderItemsModal";
 
 // Define the Order interface

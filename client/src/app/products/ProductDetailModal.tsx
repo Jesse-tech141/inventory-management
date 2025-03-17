@@ -4,6 +4,7 @@ import Header from "@/app/(components)/Header";
 import Rating from "@mui/material/Rating"; // Import Material-UI Rating
 import Stack from "@mui/material/Stack"; // Import Stack for spacing
 import { Star } from "lucide-react";
+import Image from "next/image"; // Import Next.js Image component
 
 type ProductDetailModalProps = {
   product: any;
@@ -57,11 +58,15 @@ const ProductDetailModal = ({ product, onClose }: ProductDetailModalProps) => {
             <div className="space-y-4">
               <div className="flex flex-col items-center mb-4">
                 {product.img ? (
-                  <img 
-                    src={product.img} 
-                    alt={product.name}
-                    className="w-48 h-48 object-cover rounded-lg mb-4"
-                  />
+                  <div className="w-48 h-48 relative mb-4">
+                    <Image
+                      src={product.img}
+                      alt={product.name}
+                      fill
+                      className="object-cover rounded-lg"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </div>
                 ) : (
                   <div className="w-48 h-48 bg-gray-100 flex items-center justify-center rounded-lg mb-4">
                     <span className="text-gray-400">No Image</span>
@@ -138,5 +143,7 @@ const ProductDetailModal = ({ product, onClose }: ProductDetailModalProps) => {
     </AnimatePresence>
   );
 };
+
+ProductDetailModal.displayName = "ProductDetailModal"; // Add displayName to the component
 
 export default ProductDetailModal;

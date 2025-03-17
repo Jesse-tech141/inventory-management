@@ -3,16 +3,16 @@
 import * as Clerk from "@clerk/elements/common";
 import * as SignIn from "@clerk/elements/sign-in";
 import { useUser } from "@clerk/nextjs";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
+import Image from "next/image";
 
 const LoginPage = () => {
-  const { isLoaded, isSignedIn, user } = useUser();
+  const { isLoaded, user } = useUser(); // Removed `isSignedIn`
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -20,20 +20,26 @@ const LoginPage = () => {
     setShowPassword(!showPassword);
   };
 
-  // 2. Remove `router` from dependency array
+  // Redirect based on user role
   useEffect(() => {
     const role = user?.publicMetadata.role;
 
     if (role) {
       router.push(`/${role}`);
     }
-  }, [user]); // Only `user` is needed here
+  }, [user, router]); // Added `router` to dependencies
 
-  // 4. Handle loading state
+  // Loading state
   if (!isLoaded) {
-    return <div className="flex justify-center items-center h-screen">
-    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-  </div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div
+          className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"
+          role="status"
+          aria-label="Loading"
+        ></div>
+      </div>
+    );
   }
 
   return (
@@ -90,10 +96,9 @@ const LoginPage = () => {
                   <Clerk.Input
                     type={showPassword ? "text" : "password"}
                     required
-                    autoComplete="current-password" // 7. Add autocomplete for security
+                    autoComplete="current-password"
                     className="p-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all text-gray-800 w-full pr-10"
                   />
-                  {/* 3. Add aria-label for accessibility */}
                   <IconButton
                     aria-label={showPassword ? "Hide password" : "Show password"}
                     onClick={handleClickShowPassword}
@@ -115,7 +120,7 @@ const LoginPage = () => {
               </SignIn.Action>
             </motion.div>
 
-            {/* 9. Replace "Forgot Password" link with a proper action */}
+            {/* Forgot Password Link */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

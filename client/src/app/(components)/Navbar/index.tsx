@@ -8,11 +8,9 @@ import {
   Notifications,
   DarkMode,
   LightMode,
-  AccountCircle,
   Settings,
   ViewSidebarRounded,
 } from "@mui/icons-material"; // Material Design Icons
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
 

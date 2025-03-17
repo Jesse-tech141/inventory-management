@@ -45,6 +45,8 @@ const SidebarLink = memo(({ href, icon: Icon, label, isCollapsed }: SidebarLinkP
   );
 });
 
+SidebarLink.displayName = "SidebarLink"; // Add displayName for the memoized component
+
 const Sidebar = () => {
   const dispatch = useAppDispatch();
   const isSidebarCollapsed = useAppSelector((state) => state.global.isSidebarCollapsed);
@@ -179,5 +181,7 @@ const Sidebar = () => {
     </div>
   );
 };
+
+Sidebar.displayName = "Sidebar"; // Add displayName to the Sidebar component
 
 export default Sidebar;

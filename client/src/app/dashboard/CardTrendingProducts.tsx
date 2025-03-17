@@ -2,7 +2,7 @@ import { useGetDashboardMetricsQuery } from "@/state/api";
 import React from "react";
 import Rating from "@mui/material/Rating"; // Import Material-UI Rating
 import Stack from "@mui/material/Stack"; // Import Stack for spacing
-import { Star, ArrowUp } from "lucide-react";
+import { Star } from "lucide-react";
 
 const CardTrendingProducts = () => {
   const { data: dashboardMetrics, isLoading } = useGetDashboardMetricsQuery();

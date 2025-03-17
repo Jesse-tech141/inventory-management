@@ -116,17 +116,8 @@ const Products = () => {
               onClick={() => setSelectedProduct(product)}
             >
               {/* PRODUCT IMAGE */}
-              {product.img ? (
-                <img 
-                  src={product.img} 
-                  alt={product.name}
-                  className="w-full h-48 object-cover"
-                />
-              ) : (
-                <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
-                  <span className="text-gray-400">No Image</span>
-                </div>
-              )}
+              <div className="flex flex-col items-center">
+                img</div>
 
               {/* ESSENTIAL PRODUCT INFO */}
               <div className="p-4">
