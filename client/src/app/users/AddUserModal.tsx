@@ -51,7 +51,7 @@ const AddUserModal = ({ isOpen, onClose, onAddUser }: AddUserModalProps) => {
       ) as NewUser;
 
       // Call the backend API to create the user
-      const response = await fetch("http://localhost:8000/api/users/create", {
+      const response = await fetch("http://localhost:8000/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

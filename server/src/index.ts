@@ -26,10 +26,10 @@ app.use(cors());
 /* ROUTES */
 app.use("/dashboard", dashboardRoutes); // http://localhost:8000/dashboard
 app.use("/orders", orderRoutes); // http://localhost:8000/orders
-app.use("/api/products", productRoutes); // http://localhost:8000/api/products
-app.use("/api/users", userRoutes); // http://localhost:8000/api/users
+app.use("/products", productRoutes); // http://localhost:8000/products
+app.use("/users", userRoutes); // http://localhost:8000/users
 app.use("/expenses", expenseRoutes); // http://localhost:8000/expenses
-app.use("/api/settings", settingRoutes);
+app.use("/settings", settingRoutes);
 
 
 /* SERVER */

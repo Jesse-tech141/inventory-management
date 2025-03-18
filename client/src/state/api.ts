@@ -149,7 +149,7 @@ export const api = createApi({
     //Get Products
     getProducts: build.query<Product[], void>({
       query: () => ({
-        url: "/api/products/all",
+        url: "/products",
       }),
       providesTags: ["Products"],
     }),
@@ -157,7 +157,7 @@ export const api = createApi({
 // Create Product
 createProduct: build.mutation<Product, NewProduct>({
   query: (newProduct) => ({
-    url: "/api/products/create", // Ensure the URL matches your backend route
+    url: "/products", // Ensure the URL matches your backend route
     method: "POST",
     body: newProduct,
   }),
@@ -166,14 +166,14 @@ createProduct: build.mutation<Product, NewProduct>({
 
     // Get Users
     getUsers: build.query<User[], void>({
-      query: () => "/api/users/all",
+      query: () => "/users",
       providesTags: ["Users"],
     }),
 
     // Create User
     createUser: build.mutation<User, NewUser>({
       query: (newUser) => ({
-        url: "/api/users/create",
+        url: "/users",
         method: "POST",
         body: newUser,
       }),
@@ -208,7 +208,7 @@ createProduct: build.mutation<Product, NewProduct>({
 
     // Get notifications
     getNotifications: build.query<Notifications[], void>({
-      query: () => "/api/settings/notifications",
+      query: () => "/settings/",
       providesTags: ["Notifications"], // Use the new tag
     }),
 
