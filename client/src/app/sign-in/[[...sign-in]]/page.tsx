@@ -59,7 +59,7 @@ const LoginPage = () => {
               transition={{ delay: 0.2, duration: 0.5 }}
               className="flex flex-col items-center gap-4"
             >
-              <Image src="/logo1.jpg" alt="Logo" width={48} height={48} className="rounded-full" />
+              <div className="text-gray-700">Logo</div>
               <h1 className="text-3xl font-bold text-gray-800">Welcome Back</h1>
               <h2 className="text-gray-500 text-sm">Sign in to your account</h2>
             </motion.div>
