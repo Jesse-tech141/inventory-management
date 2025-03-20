@@ -1,6 +1,7 @@
 import Image from "next/image";
-import Dashboard from "@/app/dashboard/page";
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-  return <Dashboard />;
+  redirect('/sign-in'); // Redirect to the sign-in page
 }
+

@@ -9,10 +9,9 @@ import { motion } from "framer-motion";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
-import Image from "next/image";
 
 const LoginPage = () => {
-  const { isLoaded, user } = useUser(); // Removed `isSignedIn`
+  const { isLoaded, user } = useUser();
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -20,14 +19,12 @@ const LoginPage = () => {
     setShowPassword(!showPassword);
   };
 
-  // Redirect based on user role
+  // Redirect authenticated users to the dashboard
   useEffect(() => {
-    const role = user?.publicMetadata.role;
-
-    if (role) {
-      router.push(`/${role}`);
+    if (user) {
+      router.push("/dashboard"); // Redirect to a default route
     }
-  }, [user, router]); // Added `router` to dependencies
+  }, [user, router]);
 
   // Loading state
   if (!isLoaded) {
@@ -60,7 +57,7 @@ const LoginPage = () => {
               className="flex flex-col items-center gap-4"
             >
               <div className="text-gray-700">Logo</div>
-              <h1 className="text-3xl font-bold text-gray-800">Welcome Back</h1>
+              <h1 className="text-3xl font-bold text-gray-800">LEAP</h1>
               <h2 className="text-gray-500 text-sm">Sign in to your account</h2>
             </motion.div>
 

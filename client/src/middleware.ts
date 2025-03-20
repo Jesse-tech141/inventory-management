@@ -1,19 +1,12 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
-const isPublicRoute = createRouteMatcher(['/sign-in(.*)', '/settings(.*)']);
+// Define public routes
+const isPublicRoute = createRouteMatcher(['/sign-in(.*)', '/sign-up(.*)', '/']);
 
-// Log the secretKey to verify it's being loaded
-console.log('Clerk secretKey:', process.env.CLERK_SECRET_KEY);
-
-export default clerkMiddleware(async (auth, request) => {
-  try {
-    if (!isPublicRoute(request)) {
-      await auth.protect();
-    }
-  } catch (error) {
-    console.error('Middleware error:', error);
-    // Optionally, redirect to an error page or return a custom response
-    return new Response('Authentication failed', { status: 401 });
+export default clerkMiddleware((auth, request) => {
+  // Protect non-public routes
+  if (!isPublicRoute(request)) {
+    auth.protect();
   }
 });
 
