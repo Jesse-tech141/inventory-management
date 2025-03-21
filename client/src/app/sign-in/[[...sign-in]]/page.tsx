@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
+import Image from "next/image";
 
 const LoginPage = () => {
   const { isLoaded, user } = useUser();
@@ -56,7 +57,13 @@ const LoginPage = () => {
               transition={{ delay: 0.2, duration: 0.5 }}
               className="flex flex-col items-center gap-4"
             >
-              <div className="text-gray-700">Logo</div>
+              <Image
+                        src="https://s3-ims-inventorymanagement.s3.eu-north-1.amazonaws.com/sneakers.png"
+                        alt="LEAP-logo"
+                        width={27}
+                        height={27}
+                        className="rounded w-8"
+                      />
               <h1 className="text-3xl font-bold text-gray-800">LEAP</h1>
               <h2 className="text-gray-500 text-sm">Sign in to your account</h2>
             </motion.div>

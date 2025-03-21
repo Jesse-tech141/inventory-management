@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
   Modal,
@@ -51,23 +50,34 @@ const OrderItemsModal: React.FC<OrderItemsModalProps> = ({
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 600,
+          width: {
+            xs: "90%", // On extra small screens (phones), take up 90% of the width
+            sm: 600, // On small screens and up, fixed width of 600px
+          },
           bgcolor: "background.paper",
           boxShadow: 24,
-          p: 4,
+          p: {
+            xs: 2, // On extra small screens, reduce padding
+            sm: 4, // On small screens and up, use larger padding
+          },
           borderRadius: 2,
+          maxHeight: {
+            xs: "80vh", // On extra small screens, limit height to 80% of the viewport height
+            sm: "auto", // On small screens and up, no height limit
+          },
+          overflowY: "auto", // Enable scrolling if content overflows
         }}
       >
         <DialogTitle>
-        <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Typography variant="h6" component="h2" gutterBottom color="textPrimary">
-          Order Items for Order ID: {selectedOrderId}
-        </Typography>
-        <IconButton onClick={onClose} size="small"> {/* Smaller close button */}
-                  <CloseIcon />
-                </IconButton>
-              </Box>
-            </DialogTitle>
+          <Box display="flex" justifyContent="space-between" alignItems="center">
+            <Typography variant="h6" component="h2" gutterBottom color="textPrimary">
+              Order Items for Order ID: {selectedOrderId}
+            </Typography>
+            <IconButton onClick={onClose} size="small">
+              <CloseIcon />
+            </IconButton>
+          </Box>
+        </DialogTitle>
         {isLoading ? (
           <Typography>Loading order items...</Typography>
         ) : isError || !orderItems ? (

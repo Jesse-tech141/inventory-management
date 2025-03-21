@@ -9,7 +9,6 @@ import ProductDetailModal from "./ProductDetailModal";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
-
 type Product = {
   productId: number;
   name: string;
@@ -36,7 +35,6 @@ type ProductFormData = {
   status: string;
   rating?: number;
 };
-
 
 const Products = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -86,6 +84,14 @@ const Products = () => {
     );
   }
 
+  // Add image URLs to products
+  const productsWithImages = products.map((product) => ({
+    ...product,
+    img: `https://s3-ims-inventorymanagement.s3.eu-north-1.amazonaws.com/product${
+      Math.floor(Math.random() * 32) + 1
+    }.jpg`,
+  }));
+
   return (
     <div className="mx-auto pb-5 w-full px-4 sm:px-6 lg:px-8">
       {/* HEADER SECTION */}
@@ -104,7 +110,7 @@ const Products = () => {
       {/* PRODUCT GRID */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <AnimatePresence>
-          {products.map((product, index) => (
+          {productsWithImages.map((product, index) => (
             <motion.div
               key={product.productId}
               initial={{ opacity: 0, y: 20 }}
@@ -116,8 +122,15 @@ const Products = () => {
               onClick={() => setSelectedProduct(product)}
             >
               {/* PRODUCT IMAGE */}
-              <div className="flex flex-col items-center">
-                img</div>
+              <div className="flex justify-center items-center p-6">
+                <Image
+                  src={product.img} // Use the img URL from the product object
+                  alt={product.name}
+                  width={200} // Increased size
+                  height={200} // Increased size
+                  className="rounded-2xl object-cover w-48 h-48" // Centered, rounded, and larger
+                />
+              </div>
 
               {/* ESSENTIAL PRODUCT INFO */}
               <div className="p-4">
@@ -128,11 +141,13 @@ const Products = () => {
                   <span className="text-blue-600 font-medium">
                     ${product.price.toFixed(2)}
                   </span>
-                  <span className={`text-sm ${
-                    product.stockQuantity > 0 
-                      ? "text-green-600" 
-                      : "text-red-600"
-                  }`}>
+                  <span
+                    className={`text-sm ${
+                      product.stockQuantity > 0
+                        ? "text-green-600"
+                        : "text-red-600"
+                    }`}
+                  >
                     {product.stockQuantity} in stock
                   </span>
                 </div>

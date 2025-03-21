@@ -13,6 +13,7 @@ import {
   DarkMode,
   LightMode,
 } from "@mui/icons-material"; // Material Design Icons
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { memo, useEffect, useRef, useState } from "react";
@@ -100,7 +101,13 @@ const Sidebar = () => {
     <div ref={sidebarRef} className={sidebarClassNames}>
       {/* TOP LOGO */}
       <div className="flex items-center px-5 py-4 space-x-10">
-        <div className="text-gray-700">Logo</div>
+      <Image
+          src="https://s3-ims-inventorymanagement.s3.eu-north-1.amazonaws.com/sneakers.png"
+          alt="LEAP-logo"
+          width={27}
+          height={27}
+          className="rounded w-8"
+        />
         {!isSidebarCollapsed && (
           <h1 className="ml-3 font-extrabold text-2xl text-gray-700">LEAP</h1>
         )}
@@ -181,7 +188,5 @@ const Sidebar = () => {
     </div>
   );
 };
-
-Sidebar.displayName = "Sidebar"; // Add displayName to the Sidebar component
 
 export default Sidebar;

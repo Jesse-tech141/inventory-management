@@ -62,7 +62,7 @@ const CreateProductModal = ({
 
     try {
       // Call the backend API to create the product
-      const response = await fetch("http://localhost:8000/products", {
+      const response = await fetch("http://51.21.223.255/products", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

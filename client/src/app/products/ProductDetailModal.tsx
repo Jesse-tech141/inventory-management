@@ -57,30 +57,36 @@ const ProductDetailModal = ({ product, onClose }: ProductDetailModalProps) => {
             {/* PRODUCT DETAILS */}
             <div className="space-y-4">
               <div className="flex flex-col items-center mb-4">
-                {product.img ? (
-                  <div className="w-48 h-48 relative mb-4">
+                {/* IMAGE CONTAINER WITH FIXED SIZE */}
+                <div className="w-48 h-48 relative mb-4 flex justify-center items-center">
+                  {product.img ? (
                     <Image
-                      src={product.img}
+                      src={product.img} // Use the img URL from the product object
                       alt={product.name}
-                      fill
-                      className="object-cover rounded-lg"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      width={192} // Fixed width
+                      height={192} // Fixed height
+                      className="rounded-lg object-cover w-full h-full" // Ensure the image fits the container
                     />
-                  </div>
-                ) : (
-                  <div className="w-48 h-48 bg-gray-100 flex items-center justify-center rounded-lg mb-4">
-                    <span className="text-gray-400">No Image</span>
-                  </div>
-                )}
-                <h2 className="text-2xl font-bold text-gray-900">{product.name}</h2>
+                  ) : (
+                    <div className="w-full h-full bg-gray-100 flex items-center justify-center rounded-lg">
+                      <span className="text-gray-400">No Image</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* PRODUCT NAME AND PRICE */}
+                <h2 className="text-2xl font-bold text-gray-900 mt-4">
+                  {product.name}
+                </h2>
                 <p className="text-lg text-blue-600 font-medium">
                   ${product.price.toFixed(2)}
                 </p>
-                {/* Add Rating Here */}
-                <Stack spacing={1}>
+
+                {/* RATING */}
+                <Stack spacing={1} className="mt-2">
                   <Rating
                     name="half-rating-read"
-                    value={product.ratings || 0} // Use `ratings` from the product
+                    value={product.rating || 0} // Use `rating` from the product
                     precision={0.5} // Allow half-star precision
                     readOnly // Make it read-only
                     emptyIcon={
@@ -90,6 +96,7 @@ const ProductDetailModal = ({ product, onClose }: ProductDetailModalProps) => {
                 </Stack>
               </div>
 
+              {/* PRODUCT ATTRIBUTES */}
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
                   <label className="text-gray-600">Brand:</label>
@@ -105,21 +112,25 @@ const ProductDetailModal = ({ product, onClose }: ProductDetailModalProps) => {
                 </div>
                 <div>
                   <label className="text-gray-600">Stock:</label>
-                  <p className={
-                    product.stockQuantity > 0 
-                      ? "text-green-600" 
-                      : "text-red-600"
-                  }>
+                  <p
+                    className={
+                      product.stockQuantity > 0
+                        ? "text-green-600"
+                        : "text-red-600"
+                    }
+                  >
                     {product.stockQuantity}
                   </p>
                 </div>
                 <div>
                   <label className="text-gray-600">Status:</label>
-                  <p className={
-                    product.status === "Available" 
-                      ? "text-green-600" 
-                      : "text-red-600"
-                  }>
+                  <p
+                    className={
+                      product.status === "Available"
+                        ? "text-green-600"
+                        : "text-red-600"
+                    }
+                  >
                     {product.status}
                   </p>
                 </div>
