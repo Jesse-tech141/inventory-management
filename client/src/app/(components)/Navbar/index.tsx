@@ -41,13 +41,17 @@ const Navbar = () => {
       router.push("/orders");
     } else if (query === "products") {
       router.push("/products");
+    } else if (query === "notifications") {
+      router.push("/notifications");
     } else if (query === "nike") {
       router.push("/products");
     } else if (query === "adidas") {
       router.push("/products");
-    } else if (query === "user") {
+    } else if (query === "users") {
       router.push("/users");
     } else if (query === "settings") {
+      router.push("/settings");
+    } else if (query === "user profile") {
       router.push("/settings");
     } else if (query === "expenses") {
       router.push("/expenses");
@@ -112,8 +116,8 @@ const Navbar = () => {
 
         {/* Notifications */}
         <div
-          className="relative hover:bg-blue-100 p-2 rounded-full transition-colors duration-200 hidden md:block cursor-pointer"
-          onClick={() => router.push("/settings")}
+          className="relative hover:bg-blue-100 p-2 rounded-full transition-colors cursor-pointer"
+          onClick={() => router.push("/notifications")}
         >
           <Notifications className="text-gray-500" />
         </div>
@@ -128,7 +132,7 @@ const Navbar = () => {
 
         {/* Settings Icon */}
         <div
-          className="relative hover:bg-blue-100 p-2 rounded-full transition-colors duration-200 cursor-pointer"
+          className="relative hover:bg-blue-100 p-2 rounded-full transition-colors cursor-pointer duration-200 hidden md:block"
           onClick={() => router.push("/settings")}
         >
           <Settings className="text-gray-500" />

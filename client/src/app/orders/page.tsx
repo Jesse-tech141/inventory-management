@@ -65,7 +65,7 @@ const Orders = () => {
     {
       field: "totalAmount",
       headerName: "Total Amount",
-      width: 150
+      width: 150,
     },
     { field: "createdAt", headerName: "Created At", width: 200 },
   ];
@@ -73,58 +73,62 @@ const Orders = () => {
   return (
     <div className="flex flex-col">
       <Header name="Orders" />
-      <DataGrid
-        rows={orders}
-        columns={columns}
-        getRowId={(row) => row.orderId}
-        checkboxSelection
-        pagination
-        initialState={{
-          pagination: {
-            paginationModel: { pageSize },
-          },
-        }}
-        onPaginationModelChange={(params) => setPageSize(params.pageSize)}
-        pageSizeOptions={[20, 40, 60]}
-        loading={isLoading}
-        onRowClick={handleRowClick} // Use the updated handleRowClick function
-        sx={{
-          "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: "transparent",
-            color: "#374151",
-            fontSize: "14px",
-            fontWeight: "bold",
-            borderBottom: "2px solid #e5e7eb",
-          },
-          "& .MuiDataGrid-columnHeader": {
-            padding: "10px",
-            borderRight: "1px solid #e5e7eb",
-          },
-          "& .MuiDataGrid-columnHeader:last-of-type": {
-            borderRight: "none",
-          },
-          "& .MuiDataGrid-cell": {
-            padding: "8px",
-          },
-          "& .MuiDataGrid-pagination": {
-            borderTop: "1px solid #e5e7eb",
-            padding: "8px",
-          },
-          "& .MuiButtonBase-root": {
-            color: "#4f46e5",
-            "&:hover": {
-              backgroundColor: "#e0e7ff",
+
+      {/* Wrap DataGrid in a div with a lower z-index */}
+      <div className="z-10">
+        <DataGrid
+          rows={orders}
+          columns={columns}
+          getRowId={(row) => row.orderId}
+          checkboxSelection
+          pagination
+          initialState={{
+            pagination: {
+              paginationModel: { pageSize },
             },
-          },
-          "& .MuiSelect-select": {
-            color: "#4f46e5",
-          },
-          "& .MuiSvgIcon-root": {
-            color: "#4f46e5",
-          },
-        }}
-        className="bg-white shadow rounded-lg border border-gray-200 mt-5 font-semibold !text-gray-700"
-      />
+          }}
+          onPaginationModelChange={(params) => setPageSize(params.pageSize)}
+          pageSizeOptions={[20, 40, 60]}
+          loading={isLoading}
+          onRowClick={handleRowClick} // Use the updated handleRowClick function
+          sx={{
+            "& .MuiDataGrid-columnHeaders": {
+              backgroundColor: "transparent",
+              color: "#374151",
+              fontSize: "14px",
+              fontWeight: "bold",
+              borderBottom: "2px solid #e5e7eb",
+            },
+            "& .MuiDataGrid-columnHeader": {
+              padding: "10px",
+              borderRight: "1px solid #e5e7eb",
+            },
+            "& .MuiDataGrid-columnHeader:last-of-type": {
+              borderRight: "none",
+            },
+            "& .MuiDataGrid-cell": {
+              padding: "8px",
+            },
+            "& .MuiDataGrid-pagination": {
+              borderTop: "1px solid #e5e7eb",
+              padding: "8px",
+            },
+            "& .MuiButtonBase-root": {
+              color: "#4f46e5",
+              "&:hover": {
+                backgroundColor: "#e0e7ff",
+              },
+            },
+            "& .MuiSelect-select": {
+              color: "#4f46e5",
+            },
+            "& .MuiSvgIcon-root": {
+              color: "#4f46e5",
+            },
+          }}
+          className="bg-white shadow rounded-lg border border-gray-200 mt-5 font-semibold !text-gray-700"
+        />
+      </div>
 
       {/* OrderItemsModal Component */}
       <OrderItemsModal

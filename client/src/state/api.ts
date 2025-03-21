@@ -208,7 +208,7 @@ createProduct: build.mutation<Product, NewProduct>({
 
     // Get notifications
     getNotifications: build.query<Notifications[], void>({
-      query: () => "/settings/",
+      query: () => "/notifications",
       providesTags: ["Notifications"], // Use the new tag
     }),
 

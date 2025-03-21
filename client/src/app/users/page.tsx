@@ -32,17 +32,17 @@ const Users = () => {
         },
         body: JSON.stringify(newUser),
       });
-  
+
       // Check if the response is JSON
       const contentType = response.headers.get("content-type");
       if (!contentType || !contentType.includes("application/json")) {
         const text = await response.text();
         throw new Error(`Unexpected response: ${text}`);
       }
-  
+
       const createdUser = await response.json();
       console.log("User added successfully:", createdUser);
-  
+
       refetch(); // Refetch the users list
       setIsModalOpen(false); // Close the modal
     } catch (error) {
@@ -84,58 +84,60 @@ const Users = () => {
       </div>
 
       {/* DataGrid for displaying users */}
-      <DataGrid
-        rows={transformedUsers}
-        columns={columns}
-        getRowId={(row) => row.userId}
-        onRowClick={(params) => setSelectedUser(params.row)}
-        checkboxSelection
-        pagination
-        initialState={{
-          pagination: {
-            paginationModel: { pageSize },
-          },
-        }}
-        onPaginationModelChange={(params) => setPageSize(params.pageSize)}
-        pageSizeOptions={[5, 10, 25]}
-        loading={isLoading}
-        sx={{
-          "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: "transparent",
-            color: "#374151",
-            fontSize: "14px",
-            fontWeight: "bold",
-            borderBottom: "2px solid #e5e7eb",
-          },
-          "& .MuiDataGrid-columnHeader": {
-            padding: "10px",
-            borderRight: "1px solid #e5e7eb",
-          },
-          "& .MuiDataGrid-columnHeader:last-of-type": {
-            borderRight: "none",
-          },
-          "& .MuiDataGrid-cell": {
-            padding: "8px",
-          },
-          "& .MuiDataGrid-pagination": {
-            borderTop: "1px solid #e5e7eb",
-            padding: "8px",
-          },
-          "& .MuiButtonBase-root": {
-            color: "#4f46e5",
-            "&:hover": {
-              backgroundColor: "#e0e7ff",
+      <div className="z-10">
+        <DataGrid
+          rows={transformedUsers}
+          columns={columns}
+          getRowId={(row) => row.userId}
+          onRowClick={(params) => setSelectedUser(params.row)}
+          checkboxSelection
+          pagination
+          initialState={{
+            pagination: {
+              paginationModel: { pageSize },
             },
-          },
-          "& .MuiSelect-select": {
-            color: "#4f46e5",
-          },
-          "& .MuiSvgIcon-root": {
-            color: "#4f46e5",
-          },
-        }}
-        className="bg-white shadow rounded-lg border border-gray-200 mt-5 font-semibold !text-gray-700"
-      />
+          }}
+          onPaginationModelChange={(params) => setPageSize(params.pageSize)}
+          pageSizeOptions={[5, 10, 25]}
+          loading={isLoading}
+          sx={{
+            "& .MuiDataGrid-columnHeaders": {
+              backgroundColor: "transparent",
+              color: "#374151",
+              fontSize: "14px",
+              fontWeight: "bold",
+              borderBottom: "2px solid #e5e7eb",
+            },
+            "& .MuiDataGrid-columnHeader": {
+              padding: "10px",
+              borderRight: "1px solid #e5e7eb",
+            },
+            "& .MuiDataGrid-columnHeader:last-of-type": {
+              borderRight: "none",
+            },
+            "& .MuiDataGrid-cell": {
+              padding: "8px",
+            },
+            "& .MuiDataGrid-pagination": {
+              borderTop: "1px solid #e5e7eb",
+              padding: "8px",
+            },
+            "& .MuiButtonBase-root": {
+              color: "#4f46e5",
+              "&:hover": {
+                backgroundColor: "#e0e7ff",
+              },
+            },
+            "& .MuiSelect-select": {
+              color: "#4f46e5",
+            },
+            "& .MuiSvgIcon-root": {
+              color: "#4f46e5",
+            },
+          }}
+          className="bg-white shadow rounded-lg border border-gray-200 mt-5 font-semibold !text-gray-700"
+        />
+      </div>
 
       {/* Add User Modal */}
       <AddUserModal

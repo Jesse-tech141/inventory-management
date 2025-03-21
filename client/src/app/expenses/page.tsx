@@ -1,4 +1,3 @@
-// src/app/expenses/page.tsx
 "use client";
 
 import { useGetGroupedExpensesQuery } from "@/state/api"; // Import the new hook
@@ -104,7 +103,7 @@ export default function ExpensesPage() {
           <h2 className="text-xl font-bold mb-4 text-center">
             {groupBy === "category" ? "Spending by Category" : "Spending by Month"}
           </h2>
-          <div className="h-[400px]">
+          <div className="h-[300px] sm:h-[400px]">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -112,7 +111,7 @@ export default function ExpensesPage() {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  outerRadius={150}
+                  outerRadius={window.innerWidth < 640 ? 80 : 150} // Adjust radius for mobile
                   fill="#8884d8"
                   dataKey="value"
                 >
@@ -139,7 +138,7 @@ export default function ExpensesPage() {
           </div>
         </div>
 
-        {/* Breakdown List */}
+        {/* Breakdown */}
         <div className="w-full lg:w-1/2 bg-white p-6 rounded-lg shadow-md">
           <h2 className="text-xl font-bold mb-4">Breakdown</h2>
           <ul className="space-y-3">

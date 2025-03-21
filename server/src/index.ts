@@ -10,7 +10,7 @@ import productRoutes from "./routes/productRoutes";
 import userRoutes from "./routes/userRoutes";
 import expenseRoutes from "./routes/expenseRoutes";
 import orderRoutes from "./routes/orderRoutes";
-import settingRoutes from "./routes/settingRoutes";
+import notificationRoutes from "./routes/notificationRoutes";
 
 /* CONFIGURATIONS */
 dotenv.config();
@@ -29,7 +29,7 @@ app.use("/orders", orderRoutes); // http://localhost:8000/orders
 app.use("/products", productRoutes); // http://localhost:8000/products
 app.use("/users", userRoutes); // http://localhost:8000/users
 app.use("/expenses", expenseRoutes); // http://localhost:8000/expenses
-app.use("/settings", settingRoutes);
+app.use("/notifications", notificationRoutes);// http://localhost:8000/notifications
 
 
 /* SERVER */
