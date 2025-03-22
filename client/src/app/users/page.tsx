@@ -1,13 +1,18 @@
 "use client";
 
 import React, { useState } from "react";
-import { useGetUsersQuery } from "@/state/api"; // Keep this if you're still using it for fetching users
+import {
+  useGetUsersQuery,
+  useCreateUserMutation,
+  useDeleteUserMutation,
+} from "@/state/api";
 import Header from "@/app/(components)/Header";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridRowSelectionModel } from "@mui/x-data-grid";
 import AddUserModal from "./AddUserModal";
-import { PlusCircleIcon } from "lucide-react";
+import { PlusCircleIcon, TrashIcon } from "lucide-react";
 import UserDetailsModal from "./UserDetailsModal";
-import { User, NewUser } from "@/types/types"; // Import both User and NewUser interfaces
+import { User, NewUser } from "@/types/types";
+import { motion, AnimatePresence } from "framer-motion";
 
 const columns: GridColDef[] = [
   { field: "userId", headerName: "ID", width: 90 },
@@ -19,34 +24,35 @@ const columns: GridColDef[] = [
 
 const Users = () => {
   const { data: users, isError, isLoading, refetch } = useGetUsersQuery();
+  const [createUser] = useCreateUserMutation();
+  const [deleteUser] = useDeleteUserMutation();
   const [pageSize, setPageSize] = useState<number>(5);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [selectedRows, setSelectedRows] = useState<GridRowSelectionModel>([]); // Track selected rows
 
   const handleAddUser = async (newUser: NewUser) => {
     try {
-      const response = await fetch("/api/users/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newUser),
-      });
-
-      // Check if the response is JSON
-      const contentType = response.headers.get("content-type");
-      if (!contentType || !contentType.includes("application/json")) {
-        const text = await response.text();
-        throw new Error(`Unexpected response: ${text}`);
-      }
-
-      const createdUser = await response.json();
-      console.log("User added successfully:", createdUser);
-
-      refetch(); // Refetch the users list
-      setIsModalOpen(false); // Close the modal
+      await createUser(newUser).unwrap();
+      refetch();
+      setIsModalOpen(false);
     } catch (error) {
       console.error("Failed to add user:", error);
+    }
+  };
+
+  const handleDeleteUser = async () => {
+    try {
+      // Delete all selected users
+      await Promise.all(
+        selectedRows.map((userId) => deleteUser(userId as number).unwrap())
+      );
+      refetch();
+      setIsDeleteModalOpen(false);
+      setSelectedRows([]); // Clear selected rows after deletion
+    } catch (error) {
+      console.error("Failed to delete user:", error);
     }
   };
 
@@ -72,15 +78,25 @@ const Users = () => {
 
   return (
     <div className="flex flex-col">
-      {/* Header with "Add User" button */}
+      {/* Header with "Add User" and "Delete User" buttons */}
       <div className="flex justify-between items-center mb-6">
         <Header name="Users" />
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
-        >
-          <PlusCircleIcon className="w-5 h-5 mr-2" /> Add User
-        </button>
+        <div className="flex items-center space-x-4">
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="flex items-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
+          >
+            <PlusCircleIcon className="w-5 h-5 mr-2" /> Add User
+          </button>
+          {selectedRows.length > 0 && ( // Show delete button only if rows are selected
+            <button
+              onClick={() => setIsDeleteModalOpen(true)}
+              className="flex items-center bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
+            >
+              <TrashIcon className="w-5 h-5 mr-1" />
+            </button>
+          )}
+        </div>
       </div>
 
       {/* DataGrid for displaying users */}
@@ -91,6 +107,10 @@ const Users = () => {
           getRowId={(row) => row.userId}
           onRowClick={(params) => setSelectedUser(params.row)}
           checkboxSelection
+          onRowSelectionModelChange={(newSelection) => {
+            setSelectedRows(newSelection); // Update selected rows
+          }}
+          rowSelectionModel={selectedRows} // Controlled selection
           pagination
           initialState={{
             pagination: {
@@ -98,7 +118,7 @@ const Users = () => {
             },
           }}
           onPaginationModelChange={(params) => setPageSize(params.pageSize)}
-          pageSizeOptions={[5, 10, 25]}
+          pageSizeOptions={[10, 20, 30]}
           loading={isLoading}
           sx={{
             "& .MuiDataGrid-columnHeaders": {
@@ -143,14 +163,55 @@ const Users = () => {
       <AddUserModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        onAddUser={handleAddUser} // Pass the handleAddUser function
+        onAddUser={handleAddUser}
       />
 
       {/* User Details Modal */}
-      <UserDetailsModal
-        user={selectedUser}
-        onClose={() => setSelectedUser(null)}
-      />
+      {selectedUser && (
+        <UserDetailsModal
+          user={selectedUser}
+          onClose={() => setSelectedUser(null)}
+        />
+      )}
+
+      {/* Delete User Confirmation Modal */}
+      <AnimatePresence>
+        {isDeleteModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-20 flex items-center justify-center"
+          >
+            <motion.div
+              initial={{ y: -50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -50, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="relative rounded-lg shadow-lg w-full max-w-md mx-4 p-4 bg-white"
+            >
+              <h2 className="text-xl font-bold mb-4">Confirm Deletion</h2>
+              <p className="mb-6">
+                Are you sure you want to delete the selected user(s)?
+              </p>
+              <div className="flex justify-end space-x-4">
+                <button
+                  onClick={() => setIsDeleteModalOpen(false)}
+                  className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleDeleteUser}
+                  className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                >
+                  Delete
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

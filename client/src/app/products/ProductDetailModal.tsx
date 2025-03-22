@@ -1,22 +1,37 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Header from "@/app/(components)/Header";
-import Rating from "@mui/material/Rating"; // Import Material-UI Rating
-import Stack from "@mui/material/Stack"; // Import Stack for spacing
+import Rating from "@mui/material/Rating";
+import Stack from "@mui/material/Stack";
 import { Star } from "lucide-react";
-import Image from "next/image"; // Import Next.js Image component
+import Image from "next/image";
 
-type ProductDetailModalProps = {
-  product: any;
-  onClose: () => void;
+type Product = {
+  productId: number;
+  name: string;
+  brand: string;
+  size: string;
+  color: string;
+  price: number;
+  stockQuantity: number;
+  description?: string;
+  img?: string;
+  status: string;
+  rating?: number;
+  createdAt?: string; // Optional field for creation date
 };
 
-const ProductDetailModal = ({ product, onClose }: ProductDetailModalProps) => {
-  if (!product || !product.name || !product.price) return null;
+type ProductDetailModalProps = {
+  product: Product | null;
+  isOpen: boolean; // Controls modal visibility
+  onClose: () => void; // Function to close the modal
+};
+
+const ProductDetailModal = ({ product, isOpen, onClose }: ProductDetailModalProps) => {
+  if (!product) return null;
 
   return (
     <AnimatePresence>
-      {product && (
+      {isOpen && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -32,7 +47,7 @@ const ProductDetailModal = ({ product, onClose }: ProductDetailModalProps) => {
           >
             {/* MODAL HEADER */}
             <div className="flex justify-between items-center mb-6">
-              <Header name="Product Details" />
+              <h2 className="text-2xl font-bold">Product Details</h2>
               <button
                 onClick={onClose}
                 className="text-gray-500 hover:text-gray-700"
@@ -57,15 +72,15 @@ const ProductDetailModal = ({ product, onClose }: ProductDetailModalProps) => {
             {/* PRODUCT DETAILS */}
             <div className="space-y-4">
               <div className="flex flex-col items-center mb-4">
-                {/* IMAGE CONTAINER WITH FIXED SIZE */}
+                {/* IMAGE CONTAINER */}
                 <div className="w-48 h-48 relative mb-4 flex justify-center items-center">
                   {product.img ? (
                     <Image
-                      src={product.img} // Use the img URL from the product object
+                      src={product.img}
                       alt={product.name}
-                      width={192} // Fixed width
-                      height={192} // Fixed height
-                      className="rounded-lg object-cover w-full h-full" // Ensure the image fits the container
+                      width={192}
+                      height={192}
+                      className="rounded-lg object-cover w-full h-full"
                     />
                   ) : (
                     <div className="w-full h-full bg-gray-100 flex items-center justify-center rounded-lg">
@@ -86,9 +101,9 @@ const ProductDetailModal = ({ product, onClose }: ProductDetailModalProps) => {
                 <Stack spacing={1} className="mt-2">
                   <Rating
                     name="half-rating-read"
-                    value={product.rating || 0} // Use `rating` from the product
-                    precision={0.5} // Allow half-star precision
-                    readOnly // Make it read-only
+                    value={product.rating || 0}
+                    precision={0.5}
+                    readOnly
                     emptyIcon={
                       <Star style={{ opacity: 0.55 }} fontSize="inherit" />
                     }
@@ -134,12 +149,14 @@ const ProductDetailModal = ({ product, onClose }: ProductDetailModalProps) => {
                     {product.status}
                   </p>
                 </div>
-                <div>
-                  <label className="text-gray-600">Created At:</label>
-                  <p className="text-gray-900">
-                    {new Date(product.createdAt).toLocaleDateString()}
-                  </p>
-                </div>
+                {product.createdAt && (
+                  <div>
+                    <label className="text-gray-600">Created At:</label>
+                    <p className="text-gray-900">
+                      {new Date(product.createdAt).toLocaleDateString()}
+                    </p>
+                  </div>
+                )}
                 {product.description && (
                   <div className="col-span-2">
                     <label className="text-gray-600">Description:</label>
@@ -154,7 +171,5 @@ const ProductDetailModal = ({ product, onClose }: ProductDetailModalProps) => {
     </AnimatePresence>
   );
 };
-
-ProductDetailModal.displayName = "ProductDetailModal"; // Add displayName to the component
 
 export default ProductDetailModal;

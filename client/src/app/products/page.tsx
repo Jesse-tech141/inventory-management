@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { PlusCircleIcon } from "lucide-react";
-import { useGetProductsQuery } from "@/state/api"; // Keep using RTK Query
+import { PlusCircleIcon, MoreVertical, Trash2, Edit, Eye } from "lucide-react";
+import { useGetProductsQuery, useDeleteProductMutation } from "@/state/api";
 import Header from "@/app/(components)/Header";
 import CreateProductModal from "./CreateProductModal";
 import ProductDetailModal from "./ProductDetailModal";
+import DeleteConfirmationModal from "./DeleteConfirmationModal";
+import EditProductModal from "./EditProductModal";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
@@ -23,48 +25,23 @@ type Product = {
   rating?: number;
 };
 
-type ProductFormData = {
-  name: string;
-  brand: string;
-  size: string;
-  color: string;
-  price: number;
-  stockQuantity: number;
-  description?: string;
-  img?: string;
-  status: string;
-  rating?: number;
-};
-
 const Products = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false); // New state for detail modal
 
-  // Fetch products using RTK Query
   const { data: products, isLoading, isError, refetch } = useGetProductsQuery();
+  const [deleteProduct] = useDeleteProductMutation();
 
-  // Handle creating a new product
-  const handleCreateProduct = async (productData: ProductFormData) => {
+  const handleDeleteProduct = async (productId: number) => {
     try {
-      const response = await fetch("http://localhost:8000/api/products/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(productData),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to create product");
-      }
-
-      const newProduct = await response.json();
-      refetch(); // Refetch products after creating a new one
-      setIsModalOpen(false); // Close the modal
+      await deleteProduct(productId).unwrap();
+      refetch();
+      setIsDeleteModalOpen(false);
     } catch (error) {
-      console.error("Failed to create product:", error);
-      alert("Failed to create product. Please try again.");
+      console.error("Failed to delete product:", error);
     }
   };
 
@@ -84,7 +61,6 @@ const Products = () => {
     );
   }
 
-  // Add image URLs to products
   const productsWithImages = products.map((product) => ({
     ...product,
     img: `https://s3-ims-inventorymanagement.s3.eu-north-1.amazonaws.com/product${
@@ -118,21 +94,63 @@ const Products = () => {
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
               whileHover={{ scale: 1.03 }}
-              className="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 overflow-hidden cursor-pointer"
-              onClick={() => setSelectedProduct(product)}
+              className="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 overflow-hidden relative"
             >
+              {/* THREE-DOT MENU */}
+              <div className="absolute top-2 right-2">
+                <div className="relative">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedProduct(product);
+                    }}
+                    className="p-1 rounded-full hover:bg-gray-100"
+                  >
+                    <MoreVertical className="w-5 h-5 text-gray-600" />
+                  </button>
+                  {selectedProduct?.productId === product.productId && (
+                    <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+                      <button
+                        onClick={() => {
+                          setSelectedProduct(product);
+                          setIsEditModalOpen(true);
+                        }}
+                        className="w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center"
+                      >
+                        <Edit className="w-4 h-4 mr-2" /> Edit
+                      </button>
+                      <button
+                        onClick={() => setIsDeleteModalOpen(true)}
+                        className="w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center"
+                      >
+                        <Trash2 className="w-4 h-4 mr-2" /> Delete
+                      </button>
+                      <button
+                        onClick={() => {
+                          setSelectedProduct(product);
+                          setIsDetailModalOpen(true); // Open detail modal
+                        }}
+                        className="w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center"
+                      >
+                        <Eye className="w-4 h-4 mr-2" /> View Details
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+
               {/* PRODUCT IMAGE */}
               <div className="flex justify-center items-center p-6">
                 <Image
-                  src={product.img} // Use the img URL from the product object
+                  src={product.img}
                   alt={product.name}
-                  width={200} // Increased size
-                  height={200} // Increased size
-                  className="rounded-2xl object-cover w-48 h-48" // Centered, rounded, and larger
+                  width={200}
+                  height={200}
+                  className="rounded-2xl object-cover w-48 h-48"
                 />
               </div>
 
-              {/* ESSENTIAL PRODUCT INFO */}
+              {/* PRODUCT INFO */}
               <div className="p-4">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   {product.name}
@@ -164,14 +182,34 @@ const Products = () => {
       <CreateProductModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        onCreate={handleCreateProduct}
+        onCreate={() => refetch()}
+      />
+
+      {/* EDIT PRODUCT MODAL */}
+      <EditProductModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        product={selectedProduct}
+        onUpdate={() => refetch()}
+      />
+
+      {/* DELETE CONFIRMATION MODAL */}
+      <DeleteConfirmationModal
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        onDelete={() => {
+          if (selectedProduct) {
+            handleDeleteProduct(selectedProduct.productId);
+          }
+        }}
       />
 
       {/* PRODUCT DETAIL MODAL */}
       <ProductDetailModal
-        product={selectedProduct}
-        onClose={() => setSelectedProduct(null)}
-      />
+  product={selectedProduct}
+  isOpen={isDetailModalOpen}
+  onClose={() => setIsDetailModalOpen(false)}
+/>
     </div>
   );
 };

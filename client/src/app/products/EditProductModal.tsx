@@ -1,8 +1,10 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useUpdateProductMutation } from "@/state/api";
 import { useAppSelector } from "@/app/redux";
 
-type ProductFormData = {
+type Product = {
+  productId: number;
   name: string;
   brand: string;
   size: string;
@@ -15,19 +17,21 @@ type ProductFormData = {
   rating?: number;
 };
 
-type CreateProductModalProps = {
+type EditProductModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  onCreate: (formData: ProductFormData) => void;
+  product: Product | null;
+  onUpdate: () => void;
 };
 
-const CreateProductModal = ({
+const EditProductModal = ({
   isOpen,
   onClose,
-  onCreate,
-}: CreateProductModalProps) => {
+  product,
+  onUpdate,
+}: EditProductModalProps) => {
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
-  const [formData, setFormData] = useState<ProductFormData>({
+  const [formData, setFormData] = useState<Partial<Product>>({
     name: "",
     brand: "",
     size: "",
@@ -35,15 +39,30 @@ const CreateProductModal = ({
     price: 0,
     stockQuantity: 0,
     description: "",
-    img: "",
     status: "Available",
     rating: 0,
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+
+  const [updateProduct] = useUpdateProductMutation();
+
+  useEffect(() => {
+    if (product) {
+      setFormData({
+        name: product.name,
+        brand: product.brand,
+        size: product.size,
+        color: product.color,
+        price: product.price,
+        stockQuantity: product.stockQuantity,
+        description: product.description || "",
+        status: product.status,
+        rating: product.rating || 0,
+      });
+    }
+  }, [product]);
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setFormData({
@@ -55,52 +74,22 @@ const CreateProductModal = ({
     });
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setError(null);
-
-    try {
-      // Call the backend API to create the product
-      const response = await fetch("https://j1u6ax7a11.execute-api.eu-north-1.amazonaws.com/prod/products", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to create product");
+    if (product) {
+      try {
+        console.log("Updating product with data:", { id: product.productId, data: formData }); // Log the payload
+        const result = await updateProduct({
+          id: product.productId,
+          data: formData,
+        }).unwrap();
+        console.log("Product updated successfully:", result); // Log the result
+        onUpdate(); // Refresh the product list
+        onClose(); // Close the modal
+      } catch (error) {
+        console.error("Failed to update product:", error); // Log the error
+        alert("Failed to update product. Please check the console for details.");
       }
-
-      const newProduct = await response.json();
-
-      // Call the onCreate prop (if needed)
-      onCreate(newProduct);
-
-      // Reset form after successful submission
-      setFormData({
-        name: "",
-        brand: "",
-        size: "",
-        color: "",
-        price: 0,
-        stockQuantity: 0,
-        description: "",
-        img: "",
-        status: "Available",
-        rating: 0,
-      });
-      onClose(); // Close the modal
-    } catch (error) {
-      console.error("Failed to create product:", error);
-      setError(
-        error instanceof Error ? error.message : "Failed to create product"
-      );
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -130,7 +119,7 @@ const CreateProductModal = ({
                   isDarkMode ? "text-gray-300" : "text-gray-700"
                 }`}
               >
-                Create New Product
+                Edit Product
               </h1>
               <button
                 onClick={onClose}
@@ -291,25 +280,6 @@ const CreateProductModal = ({
                 />
               </div>
 
-              {/* IMAGE URL */}
-              <div>
-                <label htmlFor="img" className="block text-sm font-medium mb-1">
-                  Image URL
-                </label>
-                <input
-                  type="text"
-                  name="img"
-                  placeholder="Enter image URL"
-                  onChange={handleChange}
-                  value={formData.img}
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    isDarkMode
-                      ? "bg-gray-700 text-white border-gray-600"
-                      : "border-gray-300"
-                  }`}
-                />
-              </div>
-
               {/* STATUS */}
               <div>
                 <label htmlFor="status" className="block text-sm font-medium mb-1">
@@ -352,11 +322,6 @@ const CreateProductModal = ({
                 />
               </div>
 
-              {/* ERROR MESSAGE */}
-              {error && (
-                <div className="text-red-500 text-sm mt-2">{error}</div>
-              )}
-
               {/* FORM ACTIONS */}
               <div className="flex justify-end space-x-4 mt-4">
                 <button
@@ -368,12 +333,9 @@ const CreateProductModal = ({
                 </button>
                 <button
                   type="submit"
-                  disabled={isSubmitting}
-                  className={`px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200 ${
-                    isSubmitting ? "opacity-50 cursor-not-allowed" : ""
-                  }`}
+                  className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200"
                 >
-                  {isSubmitting ? "Creating..." : "Create"}
+                  Save Changes
                 </button>
               </div>
             </form>
@@ -384,4 +346,4 @@ const CreateProductModal = ({
   );
 };
 
-export default CreateProductModal;
+export default EditProductModal;

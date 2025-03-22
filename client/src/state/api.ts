@@ -164,6 +164,23 @@ createProduct: build.mutation<Product, NewProduct>({
   invalidatesTags: ["Products"],
 }),
 
+updateProduct: build.mutation<Product, { id: number; data: Partial<Product> }>({
+  query: ({ id, data }) => ({
+    url: `/products/${id}`,
+    method: "PUT",
+    body: data,
+  }),
+  invalidatesTags: ["Products"],
+}),
+
+deleteProduct: build.mutation<void, number>({
+  query: (id) => ({
+    url: `/products/${id}`,
+    method: "DELETE",
+  }),
+  invalidatesTags: ["Products"],
+}),
+
     // Get Users
     getUsers: build.query<User[], void>({
       query: () => "/users",
@@ -179,6 +196,16 @@ createProduct: build.mutation<Product, NewProduct>({
       }),
       invalidatesTags: ["Users"], // Invalidate the "Users" tag to refetch the list
     }),
+
+    // Delete User
+    deleteUser: build.mutation<void, number>({
+      query: (userId) => ({
+        url: `/users/${userId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Users'],
+    }),
+  
 
     // Get Expense
     getExpenses: build.query<Expense[], void>({
@@ -232,8 +259,11 @@ export const {
   useGetDashboardMetricsQuery,
   useGetProductsQuery,
   useCreateProductMutation,
+  useUpdateProductMutation,
+  useDeleteProductMutation, 
   useGetUsersQuery,
   useCreateUserMutation,
+  useDeleteUserMutation,
   useGetSalesQuery,
   useGetOrdersQuery,
   useGetExpensesQuery,
