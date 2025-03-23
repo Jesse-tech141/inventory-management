@@ -44,15 +44,22 @@ const Users = () => {
 
   const handleDeleteUser = async () => {
     try {
-      // Delete all selected users
       await Promise.all(
-        selectedRows.map((userId) => deleteUser(userId as number).unwrap())
+        selectedRows.map(async (userId) => {
+          try {
+            await deleteUser(userId as number).unwrap();
+            console.log(`User ${userId} deleted successfully`);
+          } catch (error) {
+            console.error(`Failed to delete user ${userId}:`, error);
+            throw error; // Re-throw to stop further deletions
+          }
+        })
       );
       refetch();
       setIsDeleteModalOpen(false);
-      setSelectedRows([]); // Clear selected rows after deletion
+      setSelectedRows([]);
     } catch (error) {
-      console.error("Failed to delete user:", error);
+      console.error("Failed to delete users:", error);
     }
   };
 

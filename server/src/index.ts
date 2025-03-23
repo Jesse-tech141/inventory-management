@@ -17,11 +17,18 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({policy: "cross-origin"}));
-app.use(morgan("common"))
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(morgan("common"));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "https://inventory-management-khaki-ten.vercel.app/",
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 
 /* ROUTES */
 app.use("/dashboard", dashboardRoutes); // http://localhost:8000/dashboard
@@ -29,8 +36,7 @@ app.use("/orders", orderRoutes); // http://localhost:8000/orders
 app.use("/products", productRoutes); // http://localhost:8000/products
 app.use("/users", userRoutes); // http://localhost:8000/users
 app.use("/expenses", expenseRoutes); // http://localhost:8000/expenses
-app.use("/notifications", notificationRoutes);// http://localhost:8000/notifications
-
+app.use("/notifications", notificationRoutes); // http://localhost:8000/notifications
 
 /* SERVER */
 const port = Number(process.env.PORT) || 3001;
