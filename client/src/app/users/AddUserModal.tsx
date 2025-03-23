@@ -51,7 +51,7 @@ const AddUserModal = ({ isOpen, onClose, onAddUser }: AddUserModalProps) => {
       ) as NewUser;
 
       // Call the backend API to create the user
-      const response = await fetch("https://j1u6ax7a11.execute-api.eu-north-1.amazonaws.com/prod/users", {
+      const response = await fetch("http://51.21.223.255/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
