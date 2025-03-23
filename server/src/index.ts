@@ -30,6 +30,14 @@ app.use(
   })
 );
 
+// Handle OPTIONS requests for all routes
+app.options('*', (req, res) => {
+  res.header('Access-Control-Allow-Origin', 'https://inventory-management-khaki-ten.vercel.app');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.status(204).send();
+});
+
 /* ROUTES */
 app.use("/dashboard", dashboardRoutes); // http://localhost:8000/dashboard
 app.use("/orders", orderRoutes); // http://localhost:8000/orders
