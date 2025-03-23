@@ -12,7 +12,7 @@ type ProductFormData = {
   description?: string;
   img?: string;
   status: string;
-  rating?: number;
+  ratings?: number;
 };
 
 type CreateProductModalProps = {
@@ -37,7 +37,7 @@ const CreateProductModal = ({
     description: "",
     img: "",
     status: "Available",
-    rating: 0,
+    ratings: 0,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -91,7 +91,7 @@ const CreateProductModal = ({
         description: "",
         img: "",
         status: "Available",
-        rating: 0,
+        ratings: 0,
       });
       onClose(); // Close the modal
     } catch (error) {
@@ -341,7 +341,7 @@ const CreateProductModal = ({
                   name="rating"
                   placeholder="Enter rating (0-5)"
                   onChange={handleChange}
-                  value={formData.rating}
+                  value={formData.ratings}
                   className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                     isDarkMode
                       ? "bg-gray-700 text-white border-gray-600"

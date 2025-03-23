@@ -28,7 +28,7 @@ export const createProduct = async (req: Request, res: Response) => {
       description,
       img,
       status,
-      rating,
+      ratings,
     } = req.body;
 
     // Validate required fields
@@ -49,7 +49,7 @@ export const createProduct = async (req: Request, res: Response) => {
         description,
         img,
         status,
-        ratings: rating,
+        ratings,
       },
     });
 

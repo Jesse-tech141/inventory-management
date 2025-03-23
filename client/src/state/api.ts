@@ -27,7 +27,7 @@ export interface NewProduct {
   description?: string;    // Optional field
   img?: string;            // Optional field
   status: string;          // Required field
-  rating?: number;         // Optional field
+  ratings?: number;         // Optional field
 }
 
 // Sales Interface

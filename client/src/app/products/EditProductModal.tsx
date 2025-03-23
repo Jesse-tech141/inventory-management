@@ -14,7 +14,7 @@ type Product = {
   description?: string;
   img?: string;
   status: string;
-  rating?: number;
+  ratings?: number;
 };
 
 type EditProductModalProps = {
@@ -40,7 +40,7 @@ const EditProductModal = ({
     stockQuantity: 0,
     description: "",
     status: "Available",
-    rating: 0,
+    ratings: 0,
   });
 
   const [updateProduct] = useUpdateProductMutation();
@@ -56,7 +56,7 @@ const EditProductModal = ({
         stockQuantity: product.stockQuantity,
         description: product.description || "",
         status: product.status,
-        rating: product.rating || 0,
+        ratings: product.ratings || 0,
       });
     }
   }, [product]);
@@ -311,7 +311,7 @@ const EditProductModal = ({
                   name="rating"
                   placeholder="Enter rating (0-5)"
                   onChange={handleChange}
-                  value={formData.rating}
+                  value={formData.ratings}
                   className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                     isDarkMode
                       ? "bg-gray-700 text-white border-gray-600"

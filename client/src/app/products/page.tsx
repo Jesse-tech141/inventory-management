@@ -22,7 +22,7 @@ type Product = {
   description?: string;
   img?: string;
   status: string;
-  rating?: number;
+  ratings?: number;
 };
 
 const Products = () => {

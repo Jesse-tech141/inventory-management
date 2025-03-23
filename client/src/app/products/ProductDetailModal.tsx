@@ -16,7 +16,7 @@ type Product = {
   description?: string;
   img?: string;
   status: string;
-  rating?: number;
+  ratings?: number;
   createdAt?: string; // Optional field for creation date
 };
 
@@ -101,7 +101,7 @@ const ProductDetailModal = ({ product, isOpen, onClose }: ProductDetailModalProp
                 <Stack spacing={1} className="mt-2">
                   <Rating
                     name="half-rating-read"
-                    value={product.rating || 0}
+                    value={product.ratings || 0}
                     precision={0.5}
                     readOnly
                     emptyIcon={
